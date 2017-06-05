@@ -1,0 +1,7 @@
+_site/
+site_html/
+Gemfile.lock
+assets/
+templates/
+Gemfile
+.sass-cache/

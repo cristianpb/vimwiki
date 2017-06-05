@@ -1,0 +1,15 @@
+# Build settings
+markdown: kramdown
+theme: minima
+exclude:
+- Gemfile
+
+markdown_ext:         "wiki,mkdown,mkdn,mkd,md"
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      layout: "default"
+      type: "post"
