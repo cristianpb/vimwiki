@@ -1,0 +1,7 @@
+# 2017-10-12
+
+* rfkill:
+    * disable all (wifi-blueototh):
+        * `sudo rfkill block all`
+    * enable all (wifi-bluetooth):
+        * `sudo rfkill unblock all`
