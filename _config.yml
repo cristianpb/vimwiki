@@ -1,21 +1,36 @@
-# Build settings
-markdown: kramdown
+---
+
+# Social
+github_username: cristianpb
 title: Vimwiki
 author: Cristian
-github_username: cristianpb
+
+# Exclude files to compile
 exclude:
-- Gemfile
+  - Gemfile
+  - Gemfile.lock
+  - README.md
 
-markdown_ext:         "wiki,mkdown,mkdn,mkd,md"
+# Ensure sass dir
+sass:
+  sass_dir: _sass
 
+# markdown style
+markdown: kramdown
+
+# accept wiki extensions
+markdown_ext: "wiki,mkdown,mkdn,mkd,md"
+
+# mark all files as post layout
 defaults:
   -
     scope:
-      path: "" # an empty string here means all files in the project
+      path: ""  # an empty string here means all files in the project
     values:
       layout: "default"
       type: "post"
 
+# github default plugins
 plugins:
   - jekyll-redirect-from
   - jekyll-paginate
