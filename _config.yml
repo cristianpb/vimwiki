@@ -1,6 +1,8 @@
 # Build settings
 markdown: kramdown
-theme: minima
+title: Vimwiki
+author: Cristian
+github_username: cristianpb
 exclude:
 - Gemfile
 
@@ -13,3 +15,11 @@ defaults:
     values:
       layout: "default"
       type: "post"
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jemoji
