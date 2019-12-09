@@ -1,0 +1,69 @@
+# Commands
+
+* Erase flash memory
+esptool.py --port /dev/ttyUSB0 erase_flash
+
+* Flash 
+esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect -fm dio 0 esp8266-20190928-v1.11-361-g4ba0aff47.bin 
+
+* rshell
+rshell -p /dev/ttyUSB0
+
+* setup webrepl
+import webrepl_setup
+
+
+erreur
+>>> print(b"\x80\x00")
+b'\x80\x00'
+
+
+Welcsfx.send_message("{:.2f}".format(temp).replace(".", ""))                                                                                          
+Trying connection                                                                                                                                     
+Testing connection                                                                                                                                    
+Error writing                                                                                                                                         
+b'\x80\x00\x00'                                                                                                                                       
+                                                                                                                                                      
+DEBUG                                                                                                                                                 
+-1.0                                                                                                                                                  
+                                                                                                                                                      
+Received timeout ()                                                                                                                                   
+Trying connection                                                                                                                                     
+Testing connection                                                                                                                                    
+DEBUG                                                                                                                                                 
+28.0                                                                                                                                                  
+OK                                                                                                                                                    
+                                                                                                                                                      
+connection ok                                                                                                                                         
+Sending message                                                                                                                                       
+DEBUG                                                                                                                                                 
+79.0                                                                                                                                                  
+OK                                                                                                                                                    
+
+Welcome to MicroPython!                                                                                                                               
+Password:                                                                                                                                             
+WebREPL connected                                                                                                                                     
+>>> temp                                                                                                                                              
+22.2                                                                                                                                                  
+>>> sfx.test_connection()                                                                                                                             
+Testing connection                                                                                                                                    
+Traceback (most recent call last):                                                                                                                    
+  File "<stdin>", line 1, in <module>                                                                                                                 
+  File "main.py", line 42, in test_connection                                                                                                         
+  File "main.py", line 27, in wait_for                                                                                                                
+UnicodeError:                                                                                                                                         
+>>>                                                                                                                                                   
+>>>                                                                                                                                                   
+>>> sfx.test_connection()                                                                                                                             
+Testing connection                                                                                                                                    
+connection ok                                                                                                                                         
+>>> temp                                                                                                                                              
+22.2                                                                                                                                                  
+>>> humidity                                                                                                                                          
+57.5                                                                                                                                                  
+>>> sfx.send_message("{:.2f}{:.2f}".format(temp, humidity).replace(".", ""))                                                                          
+Testing connection                                                                                                                                    
+connection ok                                                                                                                                         
+Sending message                                                                                                                                       
+Message send                                                                                                                                          
+>>>                                                                                                                                                   

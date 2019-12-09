@@ -1,6 +1,9 @@
 # Index
 
 * [Diary](diary/diary)
+* [ESP8266](ESP8266)
+* [keyboard](keyboard)
+* [touchpad](touchpad)
 * [vimwiki](vimwiki)
 * [mongodb](mongodb)
 * [xbacklight](xbacklight)
