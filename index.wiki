@@ -4,6 +4,7 @@
 * [ESP8266](ESP8266)
 * [keyboard](keyboard)
 * [touchpad](touchpad)
+* [JetsonNano](JetsonNano)
 * [vimwiki](vimwiki)
 * [mongodb](mongodb)
 * [xbacklight](xbacklight)
