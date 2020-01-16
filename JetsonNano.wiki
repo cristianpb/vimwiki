@@ -1,13 +1,14 @@
 # Jetson Nano tips
 
-Make NVIDIA Jetson Nano Developer Kit Headless
+### Make NVIDIA Jetson Nano Developer Kit Headless
 
+```
 sudo systemctl stop gdm3
 sudo systemctl disable gdm3
 sudo systemctl set-default multi-user.target
-sudo apt remove --purge ubuntu-desktop gdm3
-sudo apt remove --purge libreoffice-common chromium-browser
+sudo apt remove --purge ubuntu-desktop gdm3 libreoffice-common chromium-browser
 sudo reboot
+```
 
 https://devtalk.nvidia.com/default/topic/1048642/jetson-nano/links-to-jetson-nano-resources-amp-wiki/
 
