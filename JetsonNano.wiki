@@ -6,7 +6,7 @@
 sudo systemctl stop gdm3
 sudo systemctl disable gdm3
 sudo systemctl set-default multi-user.target
-sudo apt remove --purge ubuntu-desktop gdm3 libreoffice-common chromium-browser
+sudo apt remove --purge ubuntu-desktop gdm3 libreoffice-common chromium-browser whoopsie unattended-upgrades modemmanager
 sudo reboot
 ```
 
