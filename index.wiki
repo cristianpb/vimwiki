@@ -15,4 +15,5 @@
 * [nginx](nginx)
 * [mpc](mpc)
 * [arch_linux](arch_linux)
+* [ubuntu](ubuntu)
 * [pass](pass)
