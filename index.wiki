@@ -8,6 +8,7 @@
 * [vimwiki](vimwiki)
 * [mongodb](mongodb)
 * [xbacklight](xbacklight)
+* [network_configuration](network_configuration)
 * [offlineimap](offlineimap) 
 * [amp](amp)
 * [rfkill](rfkill)
