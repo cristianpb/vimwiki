@@ -15,6 +15,7 @@
 * [juypter](juypter)
 * [nginx](nginx)
 * [mpc](mpc)
+* [st](st)
 * [arch_linux](arch_linux)
 * [ubuntu](ubuntu)
 * [pass](pass)
