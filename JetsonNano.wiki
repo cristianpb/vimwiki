@@ -1,8 +1,12 @@
 # Jetson Nano tips
 
-### Make NVIDIA Jetson Nano Developer Kit Headless
+## connect using screen
 
-```
+screen /dev/ttyACM0 115200
+
+## Make NVIDIA Jetson Nano Developer Kit Headless
+
+```bash
 sudo systemctl stop gdm3
 sudo systemctl disable gdm3
 sudo systemctl set-default multi-user.target
