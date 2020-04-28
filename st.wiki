@@ -18,3 +18,9 @@ Use symbola fonts for emoji, because joypixels makes st crash:
 +static char *font2[] = { "Symbola:pixelsize=12:antialias=true:autohint=true", "PowerlineSymbols:pixelsize=12:antialias=true:autohint=true" };
  static int borderpx = 2;
 ```
+
+install symbola fonts
+
+```
+sudo apt install fonts-symbola
+```
