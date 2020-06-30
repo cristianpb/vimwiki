@@ -1,0 +1,10 @@
+baseURL = "http://cristianpb.github.io/"
+languageCode = "en-us"
+title = "Vimwiki"
+#canonifyURLs = true
+##uglyURLs = true
+##relativeURLs = true
+#[permalinks]
+#  diary = "/:section/:filename"
+[params]
+  mainSections = ["diary"]
