@@ -1,4 +1,4 @@
-baseURL = "http://cristianpb.github.io/"
+baseURL = "http://cristianpb.github.io/vimwiki"
 languageCode = "en-us"
 title = "Vimwiki"
 #canonifyURLs = true

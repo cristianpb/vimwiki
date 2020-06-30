@@ -4,3 +4,4 @@ Gemfile.lock
 templates/
 .sass-cache/
 diary
+public
