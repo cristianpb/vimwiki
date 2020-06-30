@@ -3,7 +3,7 @@
 * Redirect application runing on localhost:8081 to localhost 
 
 Within the server block you should have an existing location / block. Replace the contents of that block with the following configuration. If your application is set to listen on a different port, update the highlighted portion to the correct port number.
-```
+```nginx
 . . .
     location / {
         proxy_pass http://localhost:8080;

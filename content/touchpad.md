@@ -1,8 +1,6 @@
 ## Configure using libinput
 
-* Create folder /etc/X11/xorg.conf.d
-
-* Add `/etc/X11/xorg.conf.d/30-touchpad.conf`:
+Add `/etc/X11/xorg.conf.d/30-touchpad.conf`:
 
 ```conf
 Section "InputClass"
