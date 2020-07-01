@@ -1,5 +1,3 @@
-#baseURL = "file:///home/arch/Documents/vimwiki/_site/"
 languageCode = "en-us"
 title = "Vimwiki"
-#canonifyURLs = true
 uglyURLs = true
