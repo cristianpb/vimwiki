@@ -1,3 +1,3 @@
 # My Vimwiki 
 
-Notes are compiled using jekyll minima theme
+Notes are compiled using hugo

@@ -82,6 +82,13 @@ main#content h6 {
     line-height: 1.15;
 }
 
+.title {
+    font-size: 26px;
+    font-size: 2.6rem;
+    margin-bottom: 0;
+    line-height: 1.15;
+}
+
 main#content h1 + p,
 main#content h2 + p,
 main#content h3 + p,
