@@ -10,6 +10,8 @@ sudo make install
 
 ## configuration
 
+### emoji support in ubuntu
+
 Use symbola fonts for emoji, because joypixels makes st crash:
 
 ```
@@ -21,6 +23,14 @@ Use symbola fonts for emoji, because joypixels makes st crash:
 
 install symbola fonts
 
-```
+```bash
 sudo apt install fonts-symbola
+```
+
+### emoji support in arch linux
+
+If st crashes when viewing emojis, install libxft-bgra from the AUR.
+
+```bash
+yay -S libxft-bgra
 ```
