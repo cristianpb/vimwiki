@@ -21,3 +21,4 @@
 * [ubuntu](ubuntu)
 * [vimwiki](vimwiki)
 * [xbacklight](xbacklight)
+* [xilinx](xilinx)
