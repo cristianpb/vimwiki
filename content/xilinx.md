@@ -5,9 +5,15 @@
 * https://forums.xilinx.com/t5/Adaptive-Computing-Challenge/bd-p/ACC_2020
 * machine learning tutorial: https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Machine_Learning/Introduction/README.md
 * VART, compile pretrained models https://github.com/Xilinx/Vitis-AI/tree/master/VART
+* gstereamer for read video https://www.e-consystems.com/blog/camera/getting-started-with-xilinx-zynq-ultrascale-mpsoc-zcu104-evaluation-kit-and-see3cam_cu30_chl_tc_bx/
  
 
 ## config
+
+zynq image doesn't not have configuration for usb0 internet connection
+so you can either do a temp config
+
+### temp configuration
 
 * usb modem up
  
@@ -89,4 +95,13 @@ xilinx@pynq:~$ ip a
        valid_lft forever preferred_lft forever
     inet6 fe80::e42e:a6ff:fe96:3821/64 scope link
        valid_lft forever preferred_lft forever
+```
+
+### Permanent config
+
+```config
+#/etc/network/interfaces.d/usb0
+
+auto usb0
+iface usb0 inet dhcp
 ```
