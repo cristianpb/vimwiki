@@ -6,6 +6,7 @@
 * machine learning tutorial: https://github.com/Xilinx/Vitis-In-Depth-Tutorial/blob/master/Machine_Learning/Introduction/README.md
 * VART, compile pretrained models https://github.com/Xilinx/Vitis-AI/tree/master/VART
 * gstereamer for read video https://www.e-consystems.com/blog/camera/getting-started-with-xilinx-zynq-ultrascale-mpsoc-zcu104-evaluation-kit-and-see3cam_cu30_chl_tc_bx/
+* vitis ai docuementation https://china.xilinx.com/html_docs/vitis_ai/1_2/setupevaluationboard.html#yjf1570690235238
  
 
 ## config
