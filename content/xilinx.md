@@ -155,3 +155,17 @@ dnf clean all
 dnf install xrt
 dnf install zocl
 ```
+
+* install pnyq
+
+  466  dnf install python3-pandas
+
+
+  469  dnf install libdrm-dev
+kk
+  495  cp /usr/include/libdrm/drm_mode.h  /usr/lib/gcc/aarch64-xilinx-linux/9.2.0/include/
+  496  cp /usr/include/libdrm/drm.h  /usr/lib/gcc/aarch64-xilinx-linux/9.2.0/include/
+    565  cp libxlnk_cma.h /usr/lib/gcc/aarch64-xilinx-linux/9.2.0/include/
+  497  sudo pip3 install --upgrade --upgrade-strategy only-if-needed pynq
+
+
