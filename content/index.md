@@ -4,6 +4,7 @@
 * [amp](amp)
 * [arch_linux](arch_linux)
 * [ESP8266](ESP8266)
+* [ESP32](ESP32)
 * [JetsonNano](JetsonNano)
 * [juypter](juypter)
 * [keyboard](keyboard)
