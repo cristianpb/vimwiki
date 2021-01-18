@@ -198,7 +198,7 @@ results = db.tweets.aggregate([
 
 Find the number person in Brasilia timezone with more than 100 tweets and more followers
 
-```
+```python
 #!/usr/bin/env python
 """
 Write an aggregation query to answer this question:
