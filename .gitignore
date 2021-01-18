@@ -5,3 +5,5 @@ templates/
 .sass-cache/
 diary
 public
+private
+Private.md

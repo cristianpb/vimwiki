@@ -1,6 +1,7 @@
 # Index
 
 * [Diary](diary/diary)
+* [Private](Private)
 * [amp](amp)
 * [arch_linux](arch_linux)
 * [ESP8266](ESP8266)
@@ -16,6 +17,7 @@
 * [pass](pass)
 * [rfkill](rfkill)
 * [samba](samba)
+* [xrdp](xrdp)
 * [Sigfox](Sigfox)
 * [st suckless terminal](st)
 * [touchpad](touchpad)
