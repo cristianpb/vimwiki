@@ -18,7 +18,6 @@
 * [rfkill](rfkill)
 * [samba](samba)
 * [xrdp](xrdp)
-* [Sigfox](Sigfox)
 * [st suckless terminal](st)
 * [touchpad](touchpad)
 * [ubuntu](ubuntu)
