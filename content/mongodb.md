@@ -118,7 +118,7 @@ results = db.tweets.aggregate([{"$group" : {"_id" : "$user.screen_name",
 
 ## Example for tweeter source
 
-```
+```python
 #!/usr/bin/env python
 """
 The tweets in our twitter collection have a field called "source". This field describes the application

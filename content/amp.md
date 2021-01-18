@@ -1,5 +1,4 @@
+# Accelerated mobile pages
 
-* Example
-* https://msroberts.github.io/amp-jekyll-theme/#development=1
-* To validate add: `#development=1` to the page
-* 
+* To validate add: `#development=1` to the page, for example:
+* https://cristianpb.github.io/#development=1
