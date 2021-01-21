@@ -37,3 +37,44 @@ FastREAD 0x0B ( 8 )
 Success: read_back == data
 mode: []
 ```
+
+## Reading hello world
+
+
+```sh
+screen /dev/ttyUSB0 115200
+```
+
+Output:
+
+```
+##########################
+Quicklogic QuickFeather Bootloader
+SW Version: qorc-sdk/qf-apps/qf_bootloader(v2) (GCC)
+Jun  7 2020 11:50:58
+##########################
+
+User button not pressed: proceeding to load application
+
+
+##########################
+Quicklogic QuickFeather MQTT-SN/SensiML Interface Example
+SW Version: C Jun-2020
+Jul 31 2020 11:05:53
+##########################
+
+
+
+Hello world!!
+
+Sample rate: 400
+Sample resolution : 6
+Sample range      : 0
+Sample rate       : 400
+Datablock processor task name: DBP_IMU_THREAD
+inQ         : 0x2004c550
+#*******************
+Command Line Interface
+App SW Version: C Jun-2020
+#*******************
+```
