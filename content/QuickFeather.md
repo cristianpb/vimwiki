@@ -78,3 +78,9 @@ Command Line Interface
 App SW Version: C Jun-2020
 #*******************
 ```
+
+
+search for quickfeather on github:
+https://antmicro.com/blog/2020/03/quickfeather-release/
+https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/boards/arm/warp7_m4/doc/index.html
+https://www.hackworkplay.com/2021/01/19/the-quickfeather-dev-kit-has-arrived/
