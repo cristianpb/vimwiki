@@ -84,3 +84,36 @@ search for quickfeather on github:
 https://antmicro.com/blog/2020/03/quickfeather-release/
 https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/boards/arm/warp7_m4/doc/index.html
 https://www.hackworkplay.com/2021/01/19/the-quickfeather-dev-kit-has-arrived/
+
+zephry 
+https://docs.zephyrproject.org/latest/samples/hello_world/README.html#hello-world
+quick start
+https://sensiml.com/documentation/firmware/quicklogic-quickfeather/quicklogic-quickfeather.html#flashing-quickfeather-firmware
+more complicated example
+https://github.com/QuickLogic-Corp/qorc-sdk/tree/master/qf_apps/qf_ssi_ai_app
+
+hackser example
+https://www.hackster.io/gatoninja236/getting-started-with-the-quickfeather-dev-kit-and-sensiml-9881a3
+connecting cables
+https://www.hackster.io/PSoC_Rocks/programming-quickfeather-in-zephyr-linux-4610cc
+
+## compiling
+          
+```
+make TC_PATH=/usr/bin
+```
+
+./venv/bin/python TinyFPGA-Programmer-Application/tinyfpga-programmer-gui.py --port /dev/ttyACM0 --mode --m4app qf_ssi_ai_appRecog.bin
+
+          
+```
+screen /dev/ttyUSB0 460800
+```
+
+## water flow sensor
+
+funcionamiento
+https://www.seeedstudio.com/blog/2020/05/11/how-to-use-water-flow-sensor-with-arduino/
+
+wiring 
+https://www.instructables.com/How-to-Use-Water-Flow-Sensor-Arduino-Tutorial/
