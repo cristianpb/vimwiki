@@ -8,6 +8,7 @@
 * [ESP32](ESP32)
 * [QuickFeather](QuickFeather)
 * [JetsonNano](JetsonNano)
+* [FlashXperia](FlashXperia)
 * [juypter](juypter)
 * [keyboard](keyboard)
 * [mongodb](mongodb)
