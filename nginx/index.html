@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://cristianpb.github.io/vimwiki/favicon.ico">
+    
+    <link rel="stylesheet" href="/vimwiki/css/style.min.css">
+
+    <title></title>
+</head>
+<body><header id="banner">
+  <p class="title"><a href="https://cristianpb.github.io/vimwiki">Vimwiki</a></p>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1></h1></header><h1 id="nginx">Nginx</h1>
+<ul>
+<li>Redirect application runing on localhost:8081 to localhost</li>
+</ul>
+<p>Within the server block you should have an existing location / block. Replace the contents of that block with the following configuration. If your application is set to listen on a different port, update the highlighted portion to the correct port number.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#66d9ef">.</span> <span style="color:#e6db74">.</span> <span style="color:#e6db74">.</span>
+    <span style="color:#e6db74">location</span> <span style="color:#e6db74">/</span> {
+        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://localhost:8080</span>;
+        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
+        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Upgrade</span> $http_upgrade;
+        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#39;upgrade&#39;</span>;
+        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+        <span style="color:#f92672">proxy_cache_bypass</span> $http_upgrade;
+    }
+<span style="color:#66d9ef">}</span>
+
+</code></pre></div><p><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04</a></p>
+</article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>

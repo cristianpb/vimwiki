@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://cristianpb.github.io/vimwiki/favicon.ico">
+    
+    <link rel="stylesheet" href="/vimwiki/css/style.min.css">
+
+    <title></title>
+</head>
+<body><header id="banner">
+  <p class="title"><a href="https://cristianpb.github.io/vimwiki">Vimwiki</a></p>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1></h1></header><h1 id="arch-linux-install-">Arch linux install 🐧</h1>
+<h2 id="create-partitions">Create partitions</h2>
+<p>Use fdisk or cdisk. UEFI configurations have 3 partitions (ESP in FAT32 512 Mb, / in ext4 , and swap of at least the RAM)</p>
+<h2 id="format-partitions">Format partitions</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># mkfs.ext4 /dev/sdaY</span>
+<span style="color:#75715e"># mkswap /dev/sdaZ</span>
+</code></pre></div><ul>
+<li>Mount system and swap</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># swapon /dev/sdaZ</span>
+<span style="color:#75715e"># mount /dev/sda1 /mnt</span>
+</code></pre></div><ul>
+<li>Use the pacstrap script to install the base package group:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># pacstrap /mnt base</span>
+</code></pre></div><ul>
+<li>Generate an fstab file (use -U or -L to define by UUID or labels, respectively):</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span>
+</code></pre></div><ul>
+<li>Change root into the new system:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># arch-chroot /mnt</span>
+</code></pre></div><ul>
+<li>Set the time zone:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ln -sf /usr/share/zoneinfo/Region/City /etc/localtime</span>
+</code></pre></div><ul>
+<li>Run hwclock(8) to generate /etc/adjtime:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># hwclock --systohc</span>
+</code></pre></div><ul>
+<li>Uncomment en_US.UTF-8 UTF-8 and other needed localizations in /etc/locale.gen, and generate them with:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># locale-gen</span>
+</code></pre></div><ul>
+<li>Set the LANG variable in <code>/etc/locale.conf</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">LANG<span style="color:#f92672">=</span>en_US.UTF-8
+</code></pre></div><ul>
+<li>If you set the keyboard layout, make the changes persistent in vconsole <code>/etc/vconsole.conf</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">KEYMAP<span style="color:#f92672">=</span>fr-latin1
+</code></pre></div><ul>
+<li>Create the hostname in <code>/etc/hostname</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">myhostname
+</code></pre></div><ul>
+<li>Consider adding a matching entry to hosts <code>/etc/hosts</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">127.0.0.1	localhost.localdomain	localhost
+::1		localhost.localdomain	localhost
+127.0.1.1	myhostname.localdomain	myhostname
+</code></pre></div><ul>
+<li>Set the root password:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># passwd</span>
+</code></pre></div><ul>
+<li>Boot loader</li>
+</ul>
+<p>For efi systems using grub.</p>
+<blockquote>
+<p>grub-mkconfig will automatically detect the microcode update and configure GRUB appropriately. After installing the intel-ucode package, users are directed to regenerate the GRUB config to activate loading the microcode</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S intel-ucode grub efibootmgr
+grub-install --target<span style="color:#f92672">=</span>x86_64-efi --efi-directory<span style="color:#f92672">=</span>/boot --bootloader-id<span style="color:#f92672">=</span>arch
+grub-mkconfig -o /boot/grub/grub.cfg
+mkinitcpio -p linux
+</code></pre></div><p>For not efi configurations look precedent commits</p>
+<h2 id="post-installation-instructions">Post installation instructions</h2>
+<p>Install minimum</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S base-devel iw wpa_supplicant dialog sudo
+</code></pre></div><h2 id="video">Video</h2>
+<h3 id="xorg">Xorg</h3>
+<ol>
+<li>Install packages</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S xorg xorg-apps xorg-server xorg-server-utils xorg-xinit
+</code></pre></div><ol start="2">
+<li>Test using <code>startx</code>. If needed install <code>xterm</code> and <code>xorg-twm</code></li>
+</ol>
+<h3 id="drivers">Drivers</h3>
+<p>Install minimun drivers</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S xf86-video xf86-video-intel
+</code></pre></div><p>if nvidia graphic card, install <code>bumblebee mesa nvidia</code></p>
+<h2 id="display-manager">Display manager</h2>
+<ol>
+<li>Install packages</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S xorg-xdm
+</code></pre></div><ol start="2">
+<li>Enable service: <code>systemctl enable xdm.service</code></li>
+</ol>
+<h2 id="windows-manager---i3">Windows manager - <em>i3</em></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S i3 dmenu
+</code></pre></div><h2 id="network-manager">Network manager</h2>
+<ol>
+<li>Install networkmanager packages</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S networkmanager network-manager-applet
+</code></pre></div><ol start="2">
+<li>Enable service</li>
+</ol>
+<pre><code>systemctl enable NetworkManager
+</code></pre><h2 id="touchpad">Touchpad</h2>
+<ol>
+<li>Install libinput package</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S xf86-input-libinput libinput
+</code></pre></div><ol start="2">
+<li>Create file <code>/etc/X11/xorg.conf.d/30-touchpad.conf</code> to configure touchpad</li>
+</ol>
+<pre><code>Section &quot;InputClass&quot;
+    Identifier &quot;touchpad&quot;
+    Driver &quot;libinput&quot;
+    MatchIsTouchpad &quot;on&quot;
+    Option &quot;Tapping&quot; &quot;on&quot;
+    Option &quot;TappingButtonMap&quot; &quot;lmr&quot;
+EndSection
+</code></pre><ol start="3">
+<li>Set X11 keyboard layout <code>localectl --no-convert set-x11-keymap fr</code></li>
+</ol>
+<h2 id="disks-management">Disks management</h2>
+<p>Install diskie, if old keys use: <code>sudo pacman-key --refresh</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S udisks2 udiskie
+</code></pre></div><h2 id="additional">Additional</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S tmux ranger mutt vim termite firefox xclip gnupg offlineimap pass 
+notmuch notmuch-mutt msmtp atool dunst sxiv rsync zathura zathura-pdf-poppler 
+zathura-djvu rofi inkscape gvfs feh libreoffice-still filezilla pavucontrol 
+openssh w3m ctags arandr unclutter mpd highlight scrot curl git flake8 ruby 
+nodejs npm mpd ncmpcpp mpc ntfs-3g
+</code></pre></div><h2 id="bluetooth">Bluetooth</h2>
+<ol>
+<li>Install packages</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S alsa-utils bluez bluez-utils blueman pulseaudio-bluetooth
+</code></pre></div><ol start="2">
+<li>Enable service</li>
+</ol>
+<pre><code>systemctl enable bluetooth.service
+</code></pre><h2 id="fonts">Fonts</h2>
+<ul>
+<li>Download popular fonts</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pacman -S ttf-inconsolata awesome-terminal-fonts powerline-fonts noto-fonts-emoji
+</code></pre></div><ul>
+<li>Add <a href="https://github.com/ryanoasis/nerd-fonts/releases">InconsolataGo nerd font</a></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v1.2.0/InconsolataGo.zip --output InconsolataGo.zip
+extract InconsolataGo.zip
+rm InconsolataGo.zip
+mkdir /usr/share/fonts/InconsolataGo
+mv InconsolataGo* /usr/share/fonts/InconsolataGo
+chmod <span style="color:#ae81ff">0555</span> /usr/share/fonts/InconsolataGo
+chmod <span style="color:#ae81ff">0444</span> /usr/share/fonts/InconsolataGo/InconsolataGo*
+</code></pre></div><h2 id="cower">Cower</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gpg --recv-keys --keyserver hkp://pgp.mit.edu 1EB2638FF56C0C53
+curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h<span style="color:#f92672">=</span>cower
+makepkg -si PKGBUILD --noconfirm
+</code></pre></div><ul>
+<li>AUR: polybar</li>
+</ul>
+<h2 id="python">Python</h2>
+<ul>
+<li>Basic packages for Data Science</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pacman -S jupyter mathjax python-numpy python-matplotlib python-pandas python-virtualenvwrapper
+</code></pre></div><ul>
+<li>Other</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pip install -U mutt_ics urlscan
+</code></pre></div></article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>

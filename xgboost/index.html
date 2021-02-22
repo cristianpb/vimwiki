@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://cristianpb.github.io/vimwiki/favicon.ico">
+    
+    <link rel="stylesheet" href="/vimwiki/css/style.min.css">
+
+    <title></title>
+</head>
+<body><header id="banner">
+  <p class="title"><a href="https://cristianpb.github.io/vimwiki">Vimwiki</a></p>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1></h1></header><h1 id="xgboost">Xgboost</h1>
+<h2 id="installation">Installation</h2>
+<p><a href="https://ampersandacademy.com/tutorials/python-data-science/install-xgboost-on-mac-os-sierra-for-python-programming">https://ampersandacademy.com/tutorials/python-data-science/install-xgboost-on-mac-os-sierra-for-python-programming</a></p>
+<p>Install XGBoost on Mac OS Sierra for Python Programming</p>
+<p>First, build the shared library from the C++ codes (libxgboost.so).  Then
+install the Python language packages.</p>
+<ol>
+<li>Python(Download and install Python from python.org website)</li>
+</ol>
+<p>XGBoost supports multi-threading. So you can use the multithreading feature if
+you need. But enabling multi-thread feature is very high time-consuming
+process. It took me to install the multi-threading library. So the choice is
+yours. Try with Without multi-threading or With multi-threading.</p>
+<p>Run the below two commands on the terminal to install the shared
+library.</p>
+<pre><code>git clone --recursive https://github.com/dmlc/xgboost
+cd xgboost; cp make/minimum.mk ./config.mk; make -j4
+</code></pre><p>That&rsquo;s all. You are done.</p>
+<p>By default clang in OSX does not come with open-mp. Use the
+below code for OpenMP enabled XGBoost.</p>
+<p>Now, clone the repository</p>
+<pre><code>git clone --recursive https://github.com/dmlc/xgboost
+</code></pre><p>Next copy the conﬁg ﬁle.</p>
+<pre><code>cd xgboost; cp make/config.mk ./config.mk
+</code></pre><p>Now open the conﬁg.mk ﬁle using the below command or open
+with any text editor.</p>
+<pre><code>vi config.mk
+</code></pre><p>Uncomment the lines near the top of the ﬁle:</p>
+<pre><code>export CC = gcc
+export CXX = g++
+</code></pre><p>Change them to the following:</p>
+<pre><code>export CC = gcc-7
+export CXX = g++-7
+</code></pre><p>And Change them to the following in the Makeﬁle.</p>
+<pre><code>export CC = gcc-7
+export CXX = g++-7
+</code></pre><p>Save the ﬁle. Now you need to run a cleaning step since you
+changed the Makeﬁle.</p>
+<pre><code>make clean_all &amp;&amp; make -j4
+</code></pre><p>The python package is located at python-package.
+Install system-widely, which requires root permission.</p>
+<pre><code>cd python-package; sudo python setup.py install
+</code></pre><p>That&rsquo;s all. Now you successfully installed the XGBoost library.
+Import the XGBoost like below on Anaconda or Python.
+import xgboost as xgb</p>
+<p>Sometimes, you will encounter some error like below while using
+the XGBoost on Anaconda.</p>
+<p>Execute the below command on terminal to solve the above error.
+conda install -c conda-forge xgboost=0.6a2</p>
+</article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>

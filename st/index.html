@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://cristianpb.github.io/vimwiki/favicon.ico">
+    
+    <link rel="stylesheet" href="/vimwiki/css/style.min.css">
+
+    <title></title>
+</head>
+<body><header id="banner">
+  <p class="title"><a href="https://cristianpb.github.io/vimwiki">Vimwiki</a></p>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1></h1></header><h1 id="suckless-terminal-st">Suckless terminal st</h1>
+<h2 id="installation">installation</h2>
+<pre><code>git clone https://github.com/LukeSmithxyz/st
+cd st
+sudo make install
+</code></pre><h2 id="configuration">configuration</h2>
+<h3 id="emoji-support-in-ubuntu">emoji support in ubuntu</h3>
+<p>Use symbola fonts for emoji, because joypixels makes st crash:</p>
+<pre><code> static char *font = &quot;mono:pixelsize=14:antialias=true:autohint=true&quot;;
+-static char *font2[] = { &quot;JoyPixels:pixelsize=10:antialias=true:autohint=true&quot; };
++static char *font2[] = { &quot;Symbola:pixelsize=12:antialias=true:autohint=true&quot;, &quot;PowerlineSymbols:pixelsize=12:antialias=true:autohint=true&quot; };
+ static int borderpx = 2;
+</code></pre><p>install symbola fonts</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install fonts-symbola
+</code></pre></div><h3 id="emoji-support-in-arch-linux">emoji support in arch linux</h3>
+<p>If st crashes when viewing emojis, install libxft-bgra from the AUR.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yay -S libxft-bgra
+</code></pre></div></article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>

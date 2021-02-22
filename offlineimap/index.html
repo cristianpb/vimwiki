@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://cristianpb.github.io/vimwiki/favicon.ico">
+    
+    <link rel="stylesheet" href="/vimwiki/css/style.min.css">
+
+    <title></title>
+</head>
+<body><header id="banner">
+  <p class="title"><a href="https://cristianpb.github.io/vimwiki">Vimwiki</a></p>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1></h1></header><h1 id="configure-daemon">Configure daemon</h1>
+<p>Periodic synchronization with systemd</p>
+<p>I’ve encountered problems trying to run OfflineIMAP continuously as a daemon. It would often freeze and not synchronize mail for hours. The most common solution to this is to start OfflineIMAP periodically with cron and only let it synchronize once on each run.</p>
+<p>This is what I had been doing for over a year, until I’ve recently switched to the following systemd-based solution: I run systemd with the &ndash;user switch inside my user session, allowing me to configure services (like OfflineIMAP) very conveniently. Creating the following unit file in ~/.config/systemd/user allows you to start a single synchronization.</p>
+<pre><code># checkmail.service
+
+[Unit]
+Description=check mail
+RefuseManualStart=no
+RefuseManualStop=yes
+
+[Service]
+Type=oneshot
+ExecStart=/home/arch/.dotfiles/checkmail.sh
+</code></pre><p>Additionally, a second .timer unit is needed to run the service every 10 minutes:</p>
+<pre><code># checkmail.timer
+
+[Unit]
+Description=Check Mail every fifteen minutes
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+Persistent=false
+OnBootSec= 5min
+OnUnitActiveSec= 10min
+Unit=checkmail.service
+
+[Install]
+WantedBy=default.target
+</code></pre><p>You can now enable mail synchronization by executing</p>
+<pre><code>systemctl --user enable offlineimap.timer
+</code></pre><p>See if OfflineIMAP is working correctly by following the journal:</p>
+<pre><code>journalctl -f
+</code></pre><p>links: <a href="https://babushk.in/posts/offlineimap-systemd.html">https://babushk.in/posts/offlineimap-systemd.html</a></p>
+</article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>
