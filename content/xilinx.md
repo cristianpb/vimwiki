@@ -169,3 +169,7 @@ kk
   497  sudo pip3 install --upgrade --upgrade-strategy only-if-needed pynq
 
 
+## petalinux
+
+create petalinux image
+https://www.hackster.io/adam-taylor/create-an-image-processing-with-petalinux-in-1-hour-or-less-391170
