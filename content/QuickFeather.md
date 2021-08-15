@@ -100,10 +100,15 @@ https://www.hackster.io/PSoC_Rocks/programming-quickfeather-in-zephyr-linux-4610
 ## compiling
           
 ```
-make TC_PATH=/usr/bin
+make TC_PATH=/usr/bin -C GCC_Project
 ```
 
+```
 ./venv/bin/python TinyFPGA-Programmer-Application/tinyfpga-programmer-gui.py --port /dev/ttyACM0 --mode --m4app qf_ssi_ai_appRecog.bin
+```
+
+./venv/bin/python TinyFPGA-Programmer-Application/tinyfpga-programmer-gui.py --port /dev/ttyACM0 --mode --m4app /home/arch/Documents/python/tinytpga/qorc-sdk/qf_apps/qf_ssi_ai_app/GCC_Project/output/bin/qf_ssi_ai_app.bin
+
 
           
 ```
@@ -117,3 +122,41 @@ https://www.seeedstudio.com/blog/2020/05/11/how-to-use-water-flow-sensor-with-ar
 
 wiring 
 https://www.instructables.com/How-to-Use-Water-Flow-Sensor-Arduino-Tutorial/
+
+hydrophonic
+https://www.fix.com/blog/growing-food-with-hydroponics/
+https://www.fix.com/assets/content/19052/hydroponic-facts-benefits.png
+
+## quickfeather
+
+pdf user guide
+https://raw.githubusercontent.com/QuickLogic-Corp/quick-feather-dev-board/master/doc/QuickFeather_UserGuide.pdf
+
+
+
+## led colors
+    
+    
+```
+if ((int)classification == 1) {
+  HAL_GPIO_Write(4, 1);
+} else {
+  HAL_GPIO_Write(4, 0);
+}
+
+if ((int)classification == 2) {
+  HAL_GPIO_Write(5, 1);
+} else {
+  HAL_GPIO_Write(5, 0);
+}
+
+if ((int)classification == 3) {
+  HAL_GPIO_Write(6, 1);
+} else {
+  HAL_GPIO_Write(6, 0);
+}
+
+```
+
+
+
