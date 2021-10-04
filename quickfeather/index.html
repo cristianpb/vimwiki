@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://cristianpb.github.io/vimwiki/favicon.ico">
+    
+    <link rel="stylesheet" href="/vimwiki/css/style.min.css">
+
+    <title></title>
+</head>
+<body><header id="banner">
+  <p class="title"><a href="https://cristianpb.github.io/vimwiki">Vimwiki</a></p>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1></h1></header><h2 id="flash">Flash</h2>
+<pre tabindex="0"><code>./venv/bin/python TinyFPGA-Programmer-Application/tinyfpga-programmer-gui.py --port /dev/ttyACM0 --mode --m4app quickfeather-data-collection.bin
+CLI mode
+ports =  ['/dev/ttyACM0 (QuickFeather)'] 1
+Using port  /dev/ttyACM0 (QuickFeather)
+Programming m4 application with  quickfeather-data-collection.bin
+Erasing designated flash pages
+Erase  64.0 KiB ( 0xd8 ) at  0x80000
+Erase  64.0 KiB ( 0xd8 ) at  0x90000
+Erase  32.0 KiB ( 0x52 ) at  0xa0000
+Erase  4.0 KiB ( 0x20 ) at  0xa8000
+Erase  4.0 KiB ( 0x20 ) at  0xa9000
+Erase  4.0 KiB ( 0x20 ) at  0xaa000
+Erase  4.0 KiB ( 0x20 ) at  0xab000
+Erase  4.0 KiB ( 0x20 ) at  0xac000
+Erase  4.0 KiB ( 0x20 ) at  0xad000
+Erase  4.0 KiB ( 0x20 ) at  0xae000
+Erase  4.0 KiB ( 0x20 ) at  0xaf000
+Writing  binary
+Write  193176  bytes
+[XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX]
+Verifying  binary
+FastREAD 0x0B ( 193176 )
+[XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX]
+Success: read_back == data
+Writing metadata
+Erasing designated flash pages
+Erase  4.0 KiB ( 0x20 ) at  0x13000
+Writing  metadata
+Write  8  bytes
+[X]                                               ]
+Verifying  metadata
+FastREAD 0x0B ( 8 )
+[X]                                               ]
+Success: read_back == data
+mode: []
+</code></pre><h2 id="reading-hello-world">Reading hello world</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">screen /dev/ttyUSB0 <span style="color:#ae81ff">115200</span>
+</code></pre></div><p>Output:</p>
+<pre tabindex="0"><code>##########################
+Quicklogic QuickFeather Bootloader
+SW Version: qorc-sdk/qf-apps/qf_bootloader(v2) (GCC)
+Jun  7 2020 11:50:58
+##########################
+
+User button not pressed: proceeding to load application
+
+
+##########################
+Quicklogic QuickFeather MQTT-SN/SensiML Interface Example
+SW Version: C Jun-2020
+Jul 31 2020 11:05:53
+##########################
+
+
+
+Hello world!!
+
+Sample rate: 400
+Sample resolution : 6
+Sample range      : 0
+Sample rate       : 400
+Datablock processor task name: DBP_IMU_THREAD
+inQ         : 0x2004c550
+#*******************
+Command Line Interface
+App SW Version: C Jun-2020
+#*******************
+</code></pre><p>search for quickfeather on github:
+<a href="https://antmicro.com/blog/2020/03/quickfeather-release/">https://antmicro.com/blog/2020/03/quickfeather-release/</a>
+<a href="https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/boards/arm/warp7_m4/doc/index.html">https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/boards/arm/warp7_m4/doc/index.html</a>
+<a href="https://www.hackworkplay.com/2021/01/19/the-quickfeather-dev-kit-has-arrived/">https://www.hackworkplay.com/2021/01/19/the-quickfeather-dev-kit-has-arrived/</a></p>
+<p>zephry
+<a href="https://docs.zephyrproject.org/latest/samples/hello_world/README.html#hello-world">https://docs.zephyrproject.org/latest/samples/hello_world/README.html#hello-world</a>
+quick start
+<a href="https://sensiml.com/documentation/firmware/quicklogic-quickfeather/quicklogic-quickfeather.html#flashing-quickfeather-firmware">https://sensiml.com/documentation/firmware/quicklogic-quickfeather/quicklogic-quickfeather.html#flashing-quickfeather-firmware</a>
+more complicated example
+<a href="https://github.com/QuickLogic-Corp/qorc-sdk/tree/master/qf_apps/qf_ssi_ai_app">https://github.com/QuickLogic-Corp/qorc-sdk/tree/master/qf_apps/qf_ssi_ai_app</a></p>
+<p>hackser example
+<a href="https://www.hackster.io/gatoninja236/getting-started-with-the-quickfeather-dev-kit-and-sensiml-9881a3">https://www.hackster.io/gatoninja236/getting-started-with-the-quickfeather-dev-kit-and-sensiml-9881a3</a>
+connecting cables
+<a href="https://www.hackster.io/PSoC_Rocks/programming-quickfeather-in-zephyr-linux-4610cc">https://www.hackster.io/PSoC_Rocks/programming-quickfeather-in-zephyr-linux-4610cc</a></p>
+<h2 id="compiling">compiling</h2>
+<pre tabindex="0"><code>make TC_PATH=/usr/bin -C GCC_Project
+</code></pre><pre tabindex="0"><code>./venv/bin/python TinyFPGA-Programmer-Application/tinyfpga-programmer-gui.py --port /dev/ttyACM0 --mode --m4app qf_ssi_ai_appRecog.bin
+</code></pre><p>./venv/bin/python TinyFPGA-Programmer-Application/tinyfpga-programmer-gui.py &ndash;port /dev/ttyACM0 &ndash;mode &ndash;m4app /home/arch/Documents/python/tinytpga/qorc-sdk/qf_apps/qf_ssi_ai_app/GCC_Project/output/bin/qf_ssi_ai_app.bin</p>
+<pre tabindex="0"><code>screen /dev/ttyUSB0 460800
+</code></pre><h2 id="water-flow-sensor">water flow sensor</h2>
+<p>funcionamiento
+<a href="https://www.seeedstudio.com/blog/2020/05/11/how-to-use-water-flow-sensor-with-arduino/">https://www.seeedstudio.com/blog/2020/05/11/how-to-use-water-flow-sensor-with-arduino/</a></p>
+<p>wiring
+<a href="https://www.instructables.com/How-to-Use-Water-Flow-Sensor-Arduino-Tutorial/">https://www.instructables.com/How-to-Use-Water-Flow-Sensor-Arduino-Tutorial/</a></p>
+<p>hydrophonic
+<a href="https://www.fix.com/blog/growing-food-with-hydroponics/">https://www.fix.com/blog/growing-food-with-hydroponics/</a>
+<a href="https://www.fix.com/assets/content/19052/hydroponic-facts-benefits.png">https://www.fix.com/assets/content/19052/hydroponic-facts-benefits.png</a></p>
+<h2 id="quickfeather">quickfeather</h2>
+<p>pdf user guide
+<a href="https://raw.githubusercontent.com/QuickLogic-Corp/quick-feather-dev-board/master/doc/QuickFeather_UserGuide.pdf">https://raw.githubusercontent.com/QuickLogic-Corp/quick-feather-dev-board/master/doc/QuickFeather_UserGuide.pdf</a></p>
+<h2 id="led-colors">led colors</h2>
+<pre tabindex="0"><code>if ((int)classification == 1) {
+  HAL_GPIO_Write(4, 1);
+} else {
+  HAL_GPIO_Write(4, 0);
+}
+
+if ((int)classification == 2) {
+  HAL_GPIO_Write(5, 1);
+} else {
+  HAL_GPIO_Write(5, 0);
+}
+
+if ((int)classification == 3) {
+  HAL_GPIO_Write(6, 1);
+} else {
+  HAL_GPIO_Write(6, 0);
+}
+
+</code></pre></article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://cristianpb.github.io/vimwiki/favicon.ico">
+    
+    <link rel="stylesheet" href="/vimwiki/css/style.min.css">
+
+    <title></title>
+</head>
+<body><header id="banner">
+  <p class="title"><a href="https://cristianpb.github.io/vimwiki">Vimwiki</a></p>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1></h1></header><h1 id="mongodb">Mongodb</h1>
+<p>Mongodb is able to query values inside arrays and not only match strings or intigers.</p>
+<h1 id="projection">Projection</h1>
+<blockquote>
+<p>Describe the shape that we want the documents to take in the query.</p>
+</blockquote>
+<pre tabindex="0"><code>query = {&quot;manufacturer&quot;: &quot;Toyota&quot;}
+projection = {&quot;_id&quot;: &quot;0&quot;, &quot;name&quot;: 1}
+autos = db.autos.find(query, projection)
+</code></pre><h1 id="mongoimport">mongoimport</h1>
+<p><code>mongoimport -d dbname -c collectionname --file input-file.json</code></p>
+<h1 id="operators-staring-by-">operators, staring by &ldquo;$&rdquo;</h1>
+<p>Inequality operators:
+* ($gt, $lt, $gte, $lte, $ne)
+* example:
+* <code>query = {&quot;population&quot; : {&quot;$gt&quot;: 5000}}</code>
+* <code>query = {&quot;population&quot; : {&quot;$gt&quot;: 5000, &quot;$lt&quot;: 1000}}</code>
+* City names starting by X: <code>query = {&quot;name&quot; : {&quot;$gte&quot;: 'X', &quot;$lt&quot;: 'Y'}}</code>
+* Date between: <code>query = {&quot;dounfing date&quot; : {&quot;$gt&quot;: datetime(1890,1,1), &quot;$lte&quot;: datetime(1900,1,1)}}</code></p>
+<h2 id="regex-operator">Regex operator</h2>
+<ul>
+<li>Base on PCRE (perl compatible regular expression library)</li>
+<li>Regular expresion queries</li>
+</ul>
+<pre tabindex="0"><code>db.cities.find({&quot;motto&quot;: {&quot;$regex&quot; : &quot;friendship&quot;}}).count()
+db.cities.find({&quot;motto&quot;: {&quot;$regex&quot; : &quot;[Ff]riendship&quot;}}).count()
+db.cities.find({&quot;motto&quot;: {&quot;$regex&quot; : &quot;[Ff]riendship|[Hh]appiness&quot;}}).count()
+</code></pre><h2 id="in-operator">In operator</h2>
+<p>Allow to specify an array of values possible for the query</p>
+<pre tabindex="0"><code>db.autos.find(&quot;modelyears&quot;: {&quot;$in&quot;: [1958, 1966, 1967]})
+</code></pre><h2 id="all-operator">all operator</h2>
+<p>The query values must contain <strong>all</strong> this values in order to be retrieved:</p>
+<pre tabindex="0"><code>db.autos.find(&quot;modelyears&quot;: {&quot;$all&quot;: [1958, 1966, 1967]})
+</code></pre><h2 id="dot-notation">Dot notation</h2>
+<p>You can dig in into properties using dot notation.</p>
+<p>db.tweets.find({&ldquo;entities.hashtags&rdquo;: {&quot;$ne&quot; : []}},  {&ldquo;entities.hashtags.text&rdquo; : 1, &ldquo;id&rdquo; : 0})</p>
+<h1 id="updates">Updates</h1>
+<pre tabindex="0"><code>city = db.cities.findOne({&quot;name&quot;: &quot;munchen&quot;, &quot;country&quot;: &quot;germany&quot;})
+city['isoCountryCode'] = 'DEU'
+db.cities.save(city)
+</code></pre><ul>
+<li>update expects a query document as is first parameter, and an update parameter as a second parameter</li>
+<li>if we dont use set or unset the document will be replaced.</li>
+</ul>
+<p><strong>Set</strong>:
+If the document does not already contains the specified parameter, then that field should be added.</p>
+<pre tabindex="0"><code>city = db.cities.update({&quot;name&quot; : &quot;munchen&quot;, &quot;country&quot; : &quot;germany&quot;}, {&quot;$set&quot; : {&quot;isoCountryCode&quot;: &quot;DEU&quot;}})
+</code></pre><p><strong>Unset</strong>
+What ever documents that are dound in the query and if they contains the field, then remove it.</p>
+<pre tabindex="0"><code>city = db.cities.update({&quot;name&quot; : &quot;munchen&quot;, &quot;country&quot; : &quot;germany&quot;}, {&quot;$unset&quot; : {&quot;isoCountryCode&quot;: &quot;&quot;}})
+</code></pre><h1 id="remove-documents">Remove documents</h1>
+<p><strong>drop</strong>: remove the entire collections
+db.cities.drop()</p>
+<p><strong>remove</strong>:
+remove the cities containing chicago: <code>db.cities.remove({&quot;name&quot;:&quot;Chicago&quot;})</code>
+remove cities that doesnt have a name: <code> db.cities.remove({&quot;name&quot;: { &quot;$exist&quot; : 0}})</code></p>
+<h1 id="shell">Shell</h1>
+<blockquote>
+<p>To start shell <code>mongo</code></p>
+</blockquote>
+<pre tabindex="0"><code>use examples
+db.cities.find()
+db.cities.find({&quot;gouvermentType&quot;: {&quot;$exists&quot; : 1}})
+db.cities.find({&quot;gouvermentType&quot;: {&quot;$exists&quot; : 1}}).count()
+db.cities.find({&quot;gouvermentType&quot;: {&quot;$exists&quot; : 1}}).pretty()
+</code></pre><h1 id="aggregation-framework">Aggregation framework</h1>
+<p>Provides some builtin data analysis tools for using mongodb.</p>
+<ul>
+<li>Example: Grouping tweets by user and count the number of tweets for each user.
+Use the aggregator sum to add 1 for each value.</li>
+</ul>
+<pre tabindex="0"><code>results = db.tweets.aggregate([{&quot;$group&quot; : {&quot;_id&quot; : &quot;$user.screen_name&quot;,
+                                &quot;count&quot;: { &quot;$sum&quot; : 1}}},
+                               { &quot;$sort&quot;:  { &quot;count&quot; : -1}} ])
+</code></pre><h2 id="example-for-tweeter-source">Example for tweeter source</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python</span>
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">The tweets in our twitter collection have a field called &#34;source&#34;. This field describes the application
+</span><span style="color:#e6db74">that was used to create the tweet. Following the examples for using the $group operator, your task is 
+</span><span style="color:#e6db74">to modify the &#39;make-pipeline&#39; function to identify most used applications for creating tweets. 
+</span><span style="color:#e6db74">As a check on your query, &#39;web&#39; is listed as the most frequently used application.
+</span><span style="color:#e6db74">&#39;Ubertwitter&#39; is the second most used. The number of counts should be stored in a field named &#39;count&#39;
+</span><span style="color:#e6db74">(see the assertion at the end of the script).
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Please modify only the &#39;make_pipeline&#39; function so that it creates and returns an aggregation pipeline
+</span><span style="color:#e6db74">that can be passed to the MongoDB aggregate function. As in our examples in this lesson, the aggregation 
+</span><span style="color:#e6db74">pipeline should be a list of one or more dictionary objects. 
+</span><span style="color:#e6db74">Please review the lesson examples if you are unsure of the syntax.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Your code will be run against a MongoDB instance that we have provided. 
+</span><span style="color:#e6db74">If you want to run this code locally on your machine, you have to install MongoDB, 
+</span><span style="color:#e6db74">download and insert the dataset.
+</span><span style="color:#e6db74">For instructions related to MongoDB setup and datasets please see Course Materials.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Please note that the dataset you are using here is a smaller version of the twitter dataset 
+</span><span style="color:#e6db74">used in examples in this lesson. 
+</span><span style="color:#e6db74">If you attempt some of the same queries that we looked at in the lesson examples,
+</span><span style="color:#e6db74">your results will be different.
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_db</span>(db_name):
+    <span style="color:#f92672">from</span> pymongo <span style="color:#f92672">import</span> MongoClient
+    client <span style="color:#f92672">=</span> MongoClient(<span style="color:#e6db74">&#39;localhost:27017&#39;</span>)
+    db <span style="color:#f92672">=</span> client[db_name]
+    <span style="color:#66d9ef">return</span> db
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_pipeline</span>():
+    <span style="color:#75715e"># complete the aggregation pipeline</span>
+    pipeline <span style="color:#f92672">=</span> [{<span style="color:#e6db74">&#34;$group&#34;</span> : {<span style="color:#e6db74">&#34;_id&#34;</span> : <span style="color:#e6db74">&#34;$source&#34;</span>, <span style="color:#e6db74">&#34;count&#34;</span>: { <span style="color:#e6db74">&#34;$sum&#34;</span> : <span style="color:#ae81ff">1</span>}}},
+                               { <span style="color:#e6db74">&#34;$sort&#34;</span>:  { <span style="color:#e6db74">&#34;count&#34;</span> : <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}} ]
+    <span style="color:#66d9ef">return</span> pipeline
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">tweet_sources</span>(db, pipeline):
+    <span style="color:#66d9ef">return</span> [doc <span style="color:#66d9ef">for</span> doc <span style="color:#f92672">in</span> db<span style="color:#f92672">.</span>tweets<span style="color:#f92672">.</span>aggregate(pipeline)]
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    db <span style="color:#f92672">=</span> get_db(<span style="color:#e6db74">&#39;twitter&#39;</span>)
+    pipeline <span style="color:#f92672">=</span> make_pipeline()
+    result <span style="color:#f92672">=</span> tweet_sources(db, pipeline)
+    <span style="color:#f92672">import</span> pprint
+    pprint<span style="color:#f92672">.</span>pprint(result[<span style="color:#ae81ff">0</span>])
+    <span style="color:#66d9ef">assert</span> result[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> {<span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;count&#39;</span>: <span style="color:#ae81ff">868</span>, <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;_id&#39;</span>: <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;web&#39;</span>}
+</code></pre></div><h2 id="operators">operators</h2>
+<p><a href="https://docs.mongodb.com/manual/reference/operator/aggregation/project/#pipe._S_project">More operators</a></p>
+<ul>
+<li>
+<p>&ldquo;$project&rdquo;: select the field that we want in the next stage of the pipeline</p>
+<ul>
+<li>include fields from the original document</li>
+<li>insert computed fields</li>
+<li>rename fields</li>
+<li>create fields that hold</li>
+</ul>
+</li>
+<li>
+<p>&ldquo;$match&rdquo; : Subset documents from the initial ones</p>
+</li>
+<li>
+<p>&ldquo;$group&rdquo;</p>
+</li>
+<li>
+<p>&ldquo;$sort&rdquo;</p>
+</li>
+<li>
+<p>&ldquo;$skip&rdquo;: skip a number of documents at the beginning of the search</p>
+</li>
+<li>
+<p>&ldquo;$limit&rdquo;: limit the number of selected documents</p>
+</li>
+<li>
+<p>&ldquo;$unwind&rdquo;: break the field values that are composed by arrays in to individual documents.</p>
+</li>
+</ul>
+<pre tabindex="0"><code>results = db.tweets.aggregate([
+    { &quot;$match&quot; : { &quot;users.friends_count&quot; : { &quot;$gt&quot; : 0},
+                    &quot;users.followers_count&quot; : { &quot;$gt&quot; : 0}}},
+    { &quot;$project&quot; : { &quot;ratio&quot; : { &quot;$divide&quot; : [ &quot;$user.followers_count&quot;, &quot;$user.friends_count&quot;]},
+                    &quot;screen name&quot;: &quot;$user.screen_name&quot;}},
+    { &quot;$sort&quot;: { &quot;ratio&quot; :  -1}},
+    { &quot;$limit&quot;: 1}]) 
+</code></pre><p>Find the number person in Brasilia timezone with more than 100 tweets and more followers</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python</span>
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">Write an aggregation query to answer this question:
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Of the users in the &#34;Brasilia&#34; timezone who have tweeted 100 times or more,
+</span><span style="color:#e6db74">who has the largest number of followers?
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">The following hints will help you solve this problem:
+</span><span style="color:#e6db74">- Time zone is found in the &#34;time_zone&#34; field of the user object in each tweet.
+</span><span style="color:#e6db74">- The number of tweets for each user is found in the &#34;statuses_count&#34; field.
+</span><span style="color:#e6db74">  To access these fields you will need to use dot notation (from Lesson 4)
+</span><span style="color:#e6db74">- Your aggregation query should return something like the following:
+</span><span style="color:#e6db74">{u&#39;ok&#39;: 1.0,
+</span><span style="color:#e6db74"> u&#39;result&#39;: [{u&#39;_id&#39;: ObjectId(&#39;52fd2490bac3fa1975477702&#39;),
+</span><span style="color:#e6db74">                  u&#39;followers&#39;: 2597,
+</span><span style="color:#e6db74">                  u&#39;screen_name&#39;: u&#39;marbles&#39;,
+</span><span style="color:#e6db74">                  u&#39;tweets&#39;: 12334}]}
+</span><span style="color:#e6db74">Note that you will need to create the fields &#39;followers&#39;, &#39;screen_name&#39; and &#39;tweets&#39;.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Please modify only the &#39;make_pipeline&#39; function so that it creates and returns an aggregation 
+</span><span style="color:#e6db74">pipeline that can be passed to the MongoDB aggregate function. As in our examples in this lesson,
+</span><span style="color:#e6db74">the aggregation pipeline should be a list of one or more dictionary objects. 
+</span><span style="color:#e6db74">Please review the lesson examples if you are unsure of the syntax.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Your code will be run against a MongoDB instance that we have provided. If you want to run this code
+</span><span style="color:#e6db74">locally on your machine, you have to install MongoDB, download and insert the dataset.
+</span><span style="color:#e6db74">For instructions related to MongoDB setup and datasets please see Course Materials.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Please note that the dataset you are using here is a smaller version of the twitter dataset used 
+</span><span style="color:#e6db74">in examples in this lesson. If you attempt some of the same queries that we looked at in the lesson 
+</span><span style="color:#e6db74">examples, your results will be different.
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_db</span>(db_name):
+    <span style="color:#f92672">from</span> pymongo <span style="color:#f92672">import</span> MongoClient
+    client <span style="color:#f92672">=</span> MongoClient(<span style="color:#e6db74">&#39;localhost:27017&#39;</span>)
+    db <span style="color:#f92672">=</span> client[db_name]
+    <span style="color:#66d9ef">return</span> db
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_pipeline</span>():
+    <span style="color:#75715e"># complete the aggregation pipeline</span>
+    pipeline <span style="color:#f92672">=</span> [
+    { <span style="color:#e6db74">&#34;$match&#34;</span> : { <span style="color:#e6db74">&#34;user.time_zone&#34;</span> : <span style="color:#e6db74">&#34;Brasilia&#34;</span>, 
+                   <span style="color:#e6db74">&#34;user.statuses_count&#34;</span> : {<span style="color:#e6db74">&#34;$gte&#34;</span> : <span style="color:#ae81ff">100</span>} } },
+    { <span style="color:#e6db74">&#34;$project&#34;</span> : { <span style="color:#e6db74">&#34;_id&#34;</span> : <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;screen_name&#34;</span>: <span style="color:#e6db74">&#34;$user.screen_name&#34;</span>, 
+                     <span style="color:#e6db74">&#34;tweets&#34;</span> : <span style="color:#e6db74">&#34;$user.statuses_count&#34;</span>,
+                     <span style="color:#e6db74">&#34;followers&#34;</span>: <span style="color:#e6db74">&#34;$user.followers_count&#34;</span>} },
+    { <span style="color:#e6db74">&#34;$sort&#34;</span>: { <span style="color:#e6db74">&#34;followers&#34;</span> :  <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}},
+    { <span style="color:#e6db74">&#34;$limit&#34;</span>: <span style="color:#ae81ff">1</span>}
+    ]
+    <span style="color:#75715e">#print(pipeline)</span>
+    <span style="color:#66d9ef">return</span> pipeline
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">aggregate</span>(db, pipeline):
+    <span style="color:#66d9ef">return</span> [doc <span style="color:#66d9ef">for</span> doc <span style="color:#f92672">in</span> db<span style="color:#f92672">.</span>tweets<span style="color:#f92672">.</span>aggregate(pipeline)]
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    db <span style="color:#f92672">=</span> get_db(<span style="color:#e6db74">&#39;twitter&#39;</span>)
+    pipeline <span style="color:#f92672">=</span> make_pipeline()
+    result <span style="color:#f92672">=</span> aggregate(db, pipeline)
+    <span style="color:#75715e">#print(result)</span>
+    <span style="color:#f92672">import</span> pprint
+    pprint<span style="color:#f92672">.</span>pprint(result)
+    <span style="color:#66d9ef">assert</span> len(result) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">assert</span> result[<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#34;followers&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">17209</span>
+</code></pre></div><h1 id="indexes">Indexes</h1>
+<p>Faster query system:</p>
+<pre tabindex="0"><code>db.osm.ensureIndex(&quot;tg&quot; : 1)
+</code></pre><p>Open Street maps, indexes coordinates (latitude and longitude), then it uses
+<code>$near</code> operator to search locations near a certain point</p>
+</article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>

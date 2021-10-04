@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://cristianpb.github.io/vimwiki/favicon.ico">
+    
+    <link rel="stylesheet" href="/vimwiki/css/style.min.css">
+
+    <title></title>
+</head>
+<body><header id="banner">
+  <p class="title"><a href="https://cristianpb.github.io/vimwiki">Vimwiki</a></p>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1></h1></header><h1 id="commands">Commands</h1>
+<ul>
+<li>
+<p>Erase flash memory
+esptool.py &ndash;port /dev/ttyUSB0 erase_flash</p>
+</li>
+<li>
+<p>Flash
+esptool.py &ndash;port /dev/ttyUSB0 &ndash;baud 460800 write_flash &ndash;flash_size=detect -fm dio 0 esp8266-20190928-v1.11-361-g4ba0aff47.bin</p>
+</li>
+<li>
+<p>rshell
+rshell -p /dev/ttyUSB0</p>
+</li>
+<li>
+<p>setup webrepl
+import webrepl_setup</p>
+</li>
+</ul>
+<p>erreur</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>print(b&quot;\x80\x00&quot;)
+b'\x80\x00'</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Welcsfx.send_message(&quot;{:.2f}&quot;.format(temp).replace(&quot;.&quot;, &ldquo;&quot;))                                                                                       <br>
+Trying connection                                                                                                                                  <br>
+Testing connection                                                                                                                                 <br>
+Error writing                                                                                                                                      <br>
+b'\x80\x00\x00'</p>
+<p>DEBUG                                                                                                                                              <br>
+-1.0</p>
+<p>Received timeout ()                                                                                                                                <br>
+Trying connection                                                                                                                                  <br>
+Testing connection                                                                                                                                 <br>
+DEBUG                                                                                                                                              <br>
+28.0                                                                                                                                               <br>
+OK</p>
+<p>connection ok                                                                                                                                      <br>
+Sending message                                                                                                                                    <br>
+DEBUG                                                                                                                                              <br>
+79.0                                                                                                                                               <br>
+OK</p>
+<p>Welcome to MicroPython!                                                                                                                            <br>
+Password:                                                                                                                                          <br>
+WebREPL connected</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>temp                                                                                                                                           <br>
+22.2                                                                                                                                               <br>
+sfx.test_connection()                                                                                                                          <br>
+Testing connection                                                                                                                                 <br>
+Traceback (most recent call last):                                                                                                                 <br>
+File &ldquo;<!-- raw HTML omitted -->&rdquo;, line 1, in <!-- raw HTML omitted -->                                                                                                              <br>
+File &ldquo;main.py&rdquo;, line 42, in test_connection                                                                                                      <br>
+File &ldquo;main.py&rdquo;, line 27, in wait_for                                                                                                             <br>
+UnicodeError:</p>
+<p>sfx.test_connection()                                                                                                                          <br>
+Testing connection                                                                                                                                 <br>
+connection ok                                                                                                                                      <br>
+temp                                                                                                                                           <br>
+22.2                                                                                                                                               <br>
+humidity                                                                                                                                       <br>
+57.5                                                                                                                                               <br>
+sfx.send_message(&quot;{:.2f}{:.2f}&quot;.format(temp, humidity).replace(&rdquo;.&quot;, &ldquo;&quot;))                                                                       <br>
+Testing connection                                                                                                                                 <br>
+connection ok                                                                                                                                      <br>
+Sending message                                                                                                                                    <br>
+Message send</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>

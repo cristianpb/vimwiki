@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://cristianpb.github.io/vimwiki/favicon.ico">
+    
+    <link rel="stylesheet" href="/vimwiki/css/style.min.css">
+
+    <title></title>
+</head>
+<body><header id="banner">
+  <p class="title"><a href="https://cristianpb.github.io/vimwiki">Vimwiki</a></p>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1></h1></header><h1 id="pin-definition">Pin definition</h1>
+<p><a href="https://randomnerdtutorials.com/esp32-cam-camera-pin-gpios/#board6">https://randomnerdtutorials.com/esp32-cam-camera-pin-gpios/#board6</a></p>
+<h2 id="esp-eye">ESP EYE</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#define PWDN_GPIO_NUM    -1
+</span><span style="color:#75715e">#define RESET_GPIO_NUM   -1
+</span><span style="color:#75715e">#define XCLK_GPIO_NUM    4
+</span><span style="color:#75715e">#define SIOD_GPIO_NUM    18
+</span><span style="color:#75715e">#define SIOC_GPIO_NUM    23
+</span><span style="color:#75715e">#define Y9_GPIO_NUM      36
+</span><span style="color:#75715e">#define Y8_GPIO_NUM      37
+</span><span style="color:#75715e">#define Y7_GPIO_NUM      38
+</span><span style="color:#75715e">#define Y6_GPIO_NUM      39
+</span><span style="color:#75715e">#define Y5_GPIO_NUM      35
+</span><span style="color:#75715e">#define Y4_GPIO_NUM      14
+</span><span style="color:#75715e">#define Y3_GPIO_NUM      13
+</span><span style="color:#75715e">#define Y2_GPIO_NUM      34
+</span><span style="color:#75715e">#define VSYNC_GPIO_NUM   5
+</span><span style="color:#75715e">#define HREF_GPIO_NUM    27
+</span><span style="color:#75715e">#define PCLK_GPIO_NUM    25
+</span></code></pre></div><p>Web server</p>
+<p><a href="https://randomnerdtutorials.com/esp32-cam-take-photo-display-web-server/">https://randomnerdtutorials.com/esp32-cam-take-photo-display-web-server/</a></p>
+<p>arduino board url</p>
+<p><a href="https://dl.espressif.com/dl/package_esp32_index.json">https://dl.espressif.com/dl/package_esp32_index.json</a></p>
+<h1 id="flash">Flash</h1>
+<p>esptool.py &ndash;chip esp32 &ndash;port /dev/ttyUSB0 &ndash;baud 460800 write_flash -z 0x1000 micropython_b7883ce_esp32_idf4.x_ble_camera.bin</p>
+<pre tabindex="0"><code>B0 --baud 460800 write_flash -z 0x1000 micropython_b7883ce_esp32_idf4.x_ble_camera.b
+
+n
+esptool.py v2.8
+Serial port /dev/ttyUSB0
+Connecting....
+Chip is ESP32D0WDQ5 (revision 1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: bc:dd:c2:d0:24:74
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Auto-detected Flash size: 4MB
+Compressed 1567824 bytes to 982369...
+Wrote 1567824 bytes (982369 compressed) at 0x00001000 in 22.6 seconds (effective 554
+
+7 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+</code></pre></article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://cristianpb.github.io/vimwiki/favicon.ico">
+    
+    <link rel="stylesheet" href="/vimwiki/css/style.min.css">
+
+    <title></title>
+</head>
+<body><header id="banner">
+  <p class="title"><a href="https://cristianpb.github.io/vimwiki">Vimwiki</a></p>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1></h1></header><h1 id="add-jupyter-kernel-from-notebook">Add jupyter kernel from notebook</h1>
+<ol>
+<li>Create virtual env using venv</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python -m venv venv
+</code></pre></div><p>or using virutalenv</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">virtualenv venv
+</code></pre></div><ol start="3">
+<li>Install ipykernel to comunicate with jupyter notebook</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./venv/bin/pip install ipykernel
+</code></pre></div><ol start="3">
+<li>Add venv to jupter notebook kernel</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python -m ipykernel install --user --name<span style="color:#f92672">=</span>venv
+</code></pre></div><ol start="4">
+<li>check kernel creation</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python -m ipykernel install --user --name<span style="color:#f92672">=</span>sensiml
+/home/arch/.local/share/jupyter/kernels/sensiml
+$ cat /home/arch/.local/share/jupyter/kernels/sensiml
+<span style="color:#f92672">{</span>
+ <span style="color:#e6db74">&#34;argv&#34;</span>: <span style="color:#f92672">[</span>
+  <span style="color:#e6db74">&#34;/home/arch/Documents/python/mypythonproject/venv/bin/python&#34;</span>,
+  <span style="color:#e6db74">&#34;-m&#34;</span>,
+  <span style="color:#e6db74">&#34;ipykernel_launcher&#34;</span>,
+  <span style="color:#e6db74">&#34;-f&#34;</span>,
+  <span style="color:#e6db74">&#34;{connection_file}&#34;</span>
+ <span style="color:#f92672">]</span>,
+ <span style="color:#e6db74">&#34;display_name&#34;</span>: <span style="color:#e6db74">&#34;sensiml&#34;</span>,
+ <span style="color:#e6db74">&#34;language&#34;</span>: <span style="color:#e6db74">&#34;python&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h1 id="jupyter-tips">Jupyter tips</h1>
+<p>~/.ipython/profile_default/ipython_config.py with the lines below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># Run all nodes interactively</span>
+<span style="color:#ae81ff">c.InteractiveShell.ast_node_interactivity = &#34;all&#34;</span>
+</code></pre></div></article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>

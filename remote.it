@@ -1,0 +1,21 @@
+#!/bin/sh
+
+DEVKEY=${REMOTE_IT_DEV_KEY}
+USERNAME=${REMOTE_IT_USERNAME}
+PASSWORD=${REMOTE_IT_PASSWORD}
+HOSTIP="0.0.0.0"
+
+TOKEN=$(curl -s -X POST -H developerkey:"$DEVKEY" -H Content-Type:application/json \
+    -H Cache-Control:no-cache -d "{ \"username\":\"$USERNAME\", \
+    \"password\":\"$PASSWORD\" }" https://api.remot3.it/apv/v27/user/login | jq '.token' | tr -d '"')
+
+DEVICE_ADDRESS=$(curl -s -H "token:$TOKEN" \
+     -H "developerkey:$DEVKEY" \
+     https://api.remot3.it/apv/v27/device/list/all | jq '.devices[4].deviceaddress' | tr -d '"')
+
+curl -X POST \
+     -H "token:$TOKEN" \
+     -H "developerkey:$DEVKEY" \
+     -d "{\"wait\":\"true\",\"deviceaddress\":\"$DEVICE_ADDRESS\", \
+          \"hostip\":\"$HOSTIP\" }" \
+     https://api.remot3.it/apv/v27/device/connect

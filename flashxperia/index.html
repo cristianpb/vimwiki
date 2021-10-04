@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="https://cristianpb.github.io/vimwiki/favicon.ico">
+    
+    <link rel="stylesheet" href="/vimwiki/css/style.min.css">
+
+    <title></title>
+</head>
+<body><header id="banner">
+  <p class="title"><a href="https://cristianpb.github.io/vimwiki">Vimwiki</a></p>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+</header>
+<main id="content">
+<article>
+    <header id="post-header">
+        <h1></h1></header><h1 id="flash-xperia-xz1-compact-lilac">Flash Xperia XZ1 compact lilac</h1>
+<h2 id="download-stock-firmware-with-xperia-flashtool">download stock firmware with xperia-flashtool</h2>
+<p>on linux, you can launchi it using: <code>mono XperiFirm.exe</code></p>
+<p><a href="https://www.themefoxx.com/flash-stock-firmware-xperia-flashtool/">https://www.themefoxx.com/flash-stock-firmware-xperia-flashtool/</a></p>
+<p>Creating FTF File from Stock Firmware</p>
+<pre><code>Make sure you have downloaded the latest Xperia Flashtool.
+If the download is zipped, extract the same. Open the Flashtool.
+Go to Tools &gt; Bundles &gt; Create.Flash-Stock-Firmware-Xperia-Flashtool-1
+You will be asked to select a folder. Select the folder where you have downloaded the Sony Stock Firmware files from XperiFirm tool as source folder. After you select the source folder:
+1. Double click on the Device field to select the appropriate device.
+2. In the branding field, make sure you have the right name you want to be associated with your firmware.
+3. Give the appropriate version number in the Version field.
+</code></pre>
+<h2 id="use-newflasher-to-flash-directly-usin-command-line">Use newflasher to flash directly usin command line</h2>
+<p>erase extrange *.ta files and then `./newflasher.x64'</p>
+<p><a href="https://forum.xda-developers.com/t/tool-newflasher-xperia-command-line-flasher.3619426/">https://forum.xda-developers.com/t/tool-newflasher-xperia-command-line-flasher.3619426/</a></p>
+<p>STEP 1:</p>
+<ul>
+<li>Download right firmware for your device using XperiFirm tool, put newflasher.exe into firmware dir created by XperiFirm tool. Before you double click newflasher.exe do in mind something, newflasher tool is programed to flash everything found in the same dir!!! So tool flash all .ta files, all .sin files, boot delivery (whole boot folder), partition.zip, in short all files found in dir! If you no want to flash something just move file which you no want to flash OUT OF FOLDER! Partition.zip .sin files can be flashed only if you extract partition.zip into newly created folder called partition!</li>
+</ul>
+<p>STEP 2:</p>
+<ul>
+<li>To start flashing phone put your phone into flash mode, double click newflasher.exe and wait wait wait until your device gets flashed, thats it. Look into log to see if something goes wrong! If all right you are done. If not post your log so I can look!</li>
+</ul>
+<p>SOME MORE THINGS:
+&ldquo;You do not need to unlock bootloader or to root the phone if you want to flash a stock firmware from XperiFirm.
+There are no files in the stock firmware that need to be deleted. Prompts will ask you to skip some files.
+Feel free to press N to every prompt since:</p>
+<ul>
+<li>TA dumping it&rsquo;s not related with DRM keys.</li>
+<li>Flash persist_* files only if you know what you are doing, since you will lose your attest keys. Backup persist partition.
+If you need the firmware on both A and B slot use fastboot commands to choose the inactive partion and re-flash.&rdquo;</li>
+</ul>
+<h2 id="flash-twrp-recovery">Flash twrp recovery</h2>
+<pre tabindex="0"><code>fastboot flash recovery twrp-3.3.1-0-lilac-android10-1.img
+fastboot boot twrp-3.3.1-0-lilac-android10-1.img
+</code></pre><h2 id="flash-lineageos-wirth-twrp">Flash lineageos wirth twrp</h2>
+<pre tabindex="0"><code>adb sideload lineage-18.1-20210120-UNOFFICIAL-v2.0-lilac.zip
+</code></pre></article>
+
+        </main><footer id="footer">
+    
+</footer>
+</body>
+</html>
