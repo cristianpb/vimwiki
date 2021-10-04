@@ -194,11 +194,7 @@ pacman -S udisks2 udiskie
 ## Additional
 
 ```bash
-pacman -S tmux ranger mutt vim termite firefox xclip gnupg offlineimap pass 
-notmuch notmuch-mutt msmtp atool dunst sxiv rsync zathura zathura-pdf-poppler 
-zathura-djvu rofi inkscape gvfs feh libreoffice-still filezilla pavucontrol 
-openssh w3m ctags arandr unclutter mpd highlight scrot curl git flake8 ruby 
-nodejs npm mpd ncmpcpp mpc ntfs-3g
+pacman -S tmux ranger mutt vim alacritty firefox xclip gnupg isync pass notmuch notmuch-mutt msmtp atool dunst sxiv rsync zathura zathura-pdf-poppler zathura-djvu rofi inkscape gvfs feh libreoffice-still filezilla pavucontrol openssh w3m ctags arandr unclutter mpd highlight scrot curl git flake8 nodejs npm mpd ncmpcpp mpc ntfs-3g
 ```
 
 ## Bluetooth
@@ -234,16 +230,6 @@ mv InconsolataGo* /usr/share/fonts/InconsolataGo
 chmod 0555 /usr/share/fonts/InconsolataGo
 chmod 0444 /usr/share/fonts/InconsolataGo/InconsolataGo*
 ```
-
-## Cower
-
-```bash
-gpg --recv-keys --keyserver hkp://pgp.mit.edu 1EB2638FF56C0C53
-curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower
-makepkg -si PKGBUILD --noconfirm
-```
-
-* AUR: polybar
 
 ## Python
 
